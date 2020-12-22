@@ -1,5 +1,6 @@
 import ast
 import os
+from robot.parsing.model import ResourceFile
 
 class func_info(object):
     def __init__(self, func_name, lineno, alias=None):
@@ -57,15 +58,23 @@ if __name__ == "__main__":
     p = pyparse(py_path)
     p.do()
 
-    robot_files = []
-    py_files = []
+    robot_files, py_files, filtered_files = [], [], []
     for subdir, dirs, files in os.walk(root):
         for f in files:
             path = subdir + os.sep + f
             if path.endswith('.robot') or path.endswith('.txt'):
                 robot_files.append(path)
+            elif path.endswith('.txt'):
+                try:
+                    r = ResourceFile(path).populate()
+                    robot_files.append(path)
+                except:
+                    filtered_files.append(path)
             elif path.endswith('.py'):
                 py_files.append(path)
+            else:
+                filtered_files.append(path)
+
     for robot_file in robot_files:
         if not robot_file.endswith('.txt') and not robot_file.endswith('.robot'):
             print(robot_file)
