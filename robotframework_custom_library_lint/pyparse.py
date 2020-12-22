@@ -101,4 +101,4 @@ if __name__ == "__main__":
 
     for afi in p.all_func_info:
         if not afi.marker:
-            print("Unused: {}".format(afi.func_name))
+            print("Unused keyword '{}' at line {}".format(afi.func_name, afi.lineno))
