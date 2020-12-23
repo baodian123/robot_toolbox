@@ -76,8 +76,6 @@ if __name__ == "__main__":
                 filtered_files.append(path)
 
     for robot_file in robot_files:
-        if not robot_file.endswith('.txt') and not robot_file.endswith('.robot'):
-            print(robot_file)
         with open(robot_file, 'r', encoding='utf-8') as rf:
             for line in rf:
                 if not line.startswith('#'):
@@ -89,8 +87,6 @@ if __name__ == "__main__":
                             p.all_func_info[i].marker = True
 
     for py_file in py_files:
-        if not py_file.endswith('.py'):
-            print(py_file)
         with open(py_file, 'r', encoding='utf-8') as pf:
             for line in pf:
                 if not line.startswith('#'):
