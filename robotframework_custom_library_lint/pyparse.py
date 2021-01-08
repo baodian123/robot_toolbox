@@ -62,7 +62,7 @@ if __name__ == "__main__":
     for subdir, dirs, files in os.walk(root):
         for f in files:
             path = subdir + os.sep + f
-            if path.endswith('.robot') or path.endswith('.txt'):
+            if path.endswith('.robot'):
                 robot_files.append(path)
             elif path.endswith('.txt'):
                 try:
